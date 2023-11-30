@@ -14,7 +14,7 @@ import util.DbUtil;
 
 /**
  *
- * @author shash
+ * @author aakashsangani
  */
 public class SignUpDAOImpl {
 
