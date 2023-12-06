@@ -260,7 +260,7 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseReleased
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         try {
             Connection conn = DbUtil.getConnection();
@@ -271,9 +271,9 @@ public class LoginPage extends javax.swing.JFrame {
             rs = prep1.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
-                String Fname = rs.getString("First_name");
+                String Fname = rs.getString("FirstName");
                 String role = rs.getString("Role");
-                String email = rs.getString("email_id");
+                String email = rs.getString("EmailId");
                 String cName = email.substring(email.indexOf("@")+1, email.indexOf(".com"));
                 System.out.println(Fname + " " + role + " " + cName);
                 switch (role) {
