@@ -4,8 +4,8 @@
  */
 package forms;
 
-import model.Food_items;
-import model.PropertyEnlist;
+import bean.Food_items;
+import bean.PropertyEnlist;
 import dao.IQueryMapper;
 import exceptions.ExceptionHandling;
 import java.sql.Connection;
@@ -19,7 +19,7 @@ import util.DbUtil;
 
 /**
  *
- * @author aakashsangani
+ * @author Divyesh Rajput
  */
 public class CreateFoodItems extends javax.swing.JPanel {
 
@@ -42,7 +42,7 @@ public class CreateFoodItems extends javax.swing.JPanel {
             rs= prep1.executeQuery();
             Food_items item;
             while (rs.next()){
-            item = new Food_items(rs.getString("Type"), rs.getString("dish_name"), rs.getString("Vegan"));    
+            item = new Food_items(rs.getString("Type"), rs.getString("DishName"), rs.getString("IsVegan"));    
             foodList.add(item);
             }
             
@@ -277,10 +277,10 @@ public class CreateFoodItems extends javax.swing.JPanel {
             
             
             //prep.setString(1,jTxtPropertyName.getText());
-            prep.setString(1, jComboBox1.getSelectedItem().toString() );
-            prep.setString(2,jTextField1.getText());
-            prep.setString(3,jTextArea1.getText());
-             if(jCheckBox1.isSelected())
+            prep.setString(1, jComboBox1.getSelectedItem().toString() ); //type
+            prep.setString(2,jTextField1.getText()); //dishname
+            prep.setString(3,jTextArea1.getText()); //desc
+             if(jCheckBox1.isSelected()) //isvegan
              {
                  prep.setString(4,"Yes");
              }
