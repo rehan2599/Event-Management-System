@@ -27,87 +27,56 @@ public class ReportingModule extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         show_statistics();
     }
-    
-    public void show_statistics(){
-        
-       try {
-            Connection conn = DbUtil.getConnection();
+      public void show_statistics() {
+            try (Connection conn = DbUtil.getConnection()) {
+                // Query 1
+                try (PreparedStatement prep1 = conn.prepareStatement(IQueryMapper.SELECT_EVENTS_HOSTED_5);
+                     ResultSet rs1 = prep1.executeQuery()) {
+                    String totalEvents = rs1.next() ? rs1.getString("TotalEvents") : "0";
+                    jLabel6.setText(totalEvents);
+                }
 
-            PreparedStatement prep1 = conn.prepareStatement(IQueryMapper.SELECT_EVENTS_HOSTED_5);
-            //PreparedStatement pst = conn.prepareStatement(updateQuery);
-            String totalEvents = null;
-            ResultSet rs = null;
-            rs = prep1.executeQuery();
-            if (rs.next()) {
-            totalEvents = rs.getString("TotalEvents");
-            jLabel6.setText(totalEvents);
+                // Query 2
+                try (PreparedStatement prep2 = conn.prepareStatement(IQueryMapper.SELECT_PROPERTY_ENLIST_10);
+                     ResultSet rs2 = prep2.executeQuery()) {
+                    String totalProp = rs2.next() ? rs2.getString("totalProp") : "0";
+                    jLabel8.setText(totalProp);
+                }
+
+                // Query 3
+                try (PreparedStatement prep3 = conn.prepareStatement(IQueryMapper.SELECT_EVENTS_HOSTED_6);
+                     ResultSet rs3 = prep3.executeQuery()) {
+                    String maxEvent = rs3.next() ? rs3.getString("EventName") : "0";
+                    jLabel7.setText(maxEvent);
+                }
+
+                // Query 4
+                try (PreparedStatement prep4 = conn.prepareStatement(IQueryMapper.SELECT_CATERER_4);
+                     ResultSet rs4 = prep4.executeQuery()) {
+                    String totalCat = rs4.next() ? rs4.getString("TotalCaterer") : "0";
+                    jLabel9.setText(totalCat);
+                }
+
+                // Query 5
+                try (PreparedStatement prep5 = conn.prepareStatement(IQueryMapper.SELECT_EVENTS_HOSTED_7);
+                     ResultSet rs5 = prep5.executeQuery()) {
+                    String nilEvent = rs5.next() ? rs5.getString("nilEvent") : "0";
+                    jLabel10.setText(nilEvent);
+                }
+
+                // Query 6
+                try (PreparedStatement prep6 = conn.prepareStatement(IQueryMapper.SELECT_CATERER_5);
+                     ResultSet rs6 = prep6.executeQuery()) {
+                    String maxPackage = rs6.next() ? rs6.getString("CatererName") + ", " + rs6.getString("PackageName") + ", " + rs6.getString("Price") : "0";
+                    jLabel16.setText(maxPackage);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
             }
-            else jLabel6.setText("0");
-            
-            rs = null;
-            PreparedStatement prep2 = conn.prepareStatement(IQueryMapper.SELECT_PROPERTY_ENLIST_10);
-            //PreparedStatement pst = conn.prepareStatement(updateQuery);
-            String totalProp = null;
-            rs = prep2.executeQuery();
-            
-            if (rs.next()) {
-            totalProp = rs.getString("totalProp");
-            jLabel8.setText(totalProp);
-            }
-            else jLabel8.setText("0");
-            
-            rs = null;
-            PreparedStatement prep3 = conn.prepareStatement(IQueryMapper.SELECT_EVENTS_HOSTED_6);
-            //PreparedStatement pst = conn.prepareStatement(updateQuery);
-            String maxEvent = null;
-            rs = prep3.executeQuery();
-            
-            if (rs.next()) {
-            maxEvent = rs.getString("Event_Name");
-            jLabel7.setText(maxEvent);
-            }
-            rs = null;
-            PreparedStatement prep4 = conn.prepareStatement(IQueryMapper.SELECT_CATERER_4);
-            //PreparedStatement pst = conn.prepareStatement(updateQuery);
-            String totalCat = null;
-            rs = prep4.executeQuery();
-            
-            if (rs.next()) {
-            totalCat = rs.getString("TotalCaterer");
-            jLabel9.setText(totalCat);
-            }
-            else jLabel9.setText("0");
-            
-            rs = null;
-            PreparedStatement prep5 = conn.prepareStatement(IQueryMapper.SELECT_EVENTS_HOSTED_7);
-            //PreparedStatement pst = conn.prepareStatement(updateQuery);
-            String nilEvent = null;
-            rs = prep5.executeQuery();
-            
-            if (rs.next()) {
-            nilEvent = rs.getString("nilEvent");
-            jLabel10.setText(nilEvent);
-            }
-            else jLabel10.setText("0");
-            
-            rs = null;
-            PreparedStatement prep6 = conn.prepareStatement(IQueryMapper.SELECT_CATERER_5);
-            
-            //PreparedStatement pst = conn.prepareStatement(updateQuery);
-            String maxPackage = null;
-            rs = prep6.executeQuery();
-            
-            if (rs.next()) {
-//             + ", "+rs.getString("Package_Name")+", " + rs.getString("Price");
-            maxPackage = rs.getString("Caterer_Name")+ ", "+rs.getString("Package_Name")+", " + rs.getString("Price");
-             jLabel16.setText(maxPackage);
-            }
-            
-             
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
         }
-    }
+    
+    
     
 
     /**
