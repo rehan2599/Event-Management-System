@@ -103,7 +103,7 @@ Corporates and personal clients can book the venue using a QR code. Users are no
 
 
 
-<img width="766" alt="FinalERD_ AED_Final_Project drawio" src="https://user-images.githubusercontent.com/119814794/206958768-6b3247d0-22f8-44df-8770-772aac66b4df.png">
+<img width="766" alt="FinalERD_ AED_Final_Project drawio" src="https://drive.google.com/file/d/1xDIUoaNSyDH4ol2A3jZsNARDO4bwjwTS/view?usp=sharing">
 
 
 
