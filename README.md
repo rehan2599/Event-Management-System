@@ -3,7 +3,7 @@
 # EVENTSIGMA LLC - Final AED Project
 
 ## Group Jarvis
-- Aakash Sangani()
+- Aakash Sangani(002878421)
 - Rehan Parvez Khan (002837350)
 - Anas Baig (002837748)
 
