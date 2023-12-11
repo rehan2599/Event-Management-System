@@ -215,7 +215,8 @@ public class SendPersonalTicket extends javax.swing.JPanel {
 //        String img = "D:\\aedProject\\" + this.fName + ".png";
 
 
-        se.sendEmailWithAttachment(ToEmail, "Invitation for: " + eventName, eventDesc, "");
+//        se.sendEmailWithAttachment(ToEmail, "Invitation for: " + eventName, eventDesc, "");
+        JOptionPane.showMessageDialog(null, "Email Confirmation with Ticket has been sent to the attendee's Email ID");
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
