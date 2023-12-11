@@ -6,7 +6,7 @@ package dao;
 
 /**
  *
- * @author AnasBaig
+ * @author Aditya Prakash
  */
 public interface IQueryMapper {
 
