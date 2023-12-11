@@ -4,9 +4,9 @@
  */
 package forms;
 
-import model.Caterer;
-import model.Food_items;
-import model.PropertyEnlist;
+import bean.Caterer;
+import bean.Food_items;
+import bean.PropertyEnlist;
 import dao.IQueryMapper;
 import exceptions.ExceptionHandling;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import util.DbUtil;
 
 /**
  *
- * @author aakashsangani
+ * @author Divyesh Rajput
  */
 public class CreateFoodPackage extends javax.swing.JPanel {
 
@@ -44,7 +44,7 @@ public class CreateFoodPackage extends javax.swing.JPanel {
             ResultSet rs = null;
             rs = prep1.executeQuery();
             while (rs.next()) {
-                String dish_name = rs.getString("dish_name");
+                String dish_name = rs.getString("DishName");
                 jComboBox1.addItem(dish_name);
                 jComboBox2.addItem(dish_name);
 
@@ -55,7 +55,7 @@ public class CreateFoodPackage extends javax.swing.JPanel {
             rs = null;
             rs = prep2.executeQuery();
             while (rs.next()) {
-                String dish_name = rs.getString("dish_name");
+                String dish_name = rs.getString("DishName");
                 jComboBox3.addItem(dish_name);
                 jComboBox6.addItem(dish_name);
             }
@@ -65,7 +65,7 @@ public class CreateFoodPackage extends javax.swing.JPanel {
             rs = null;
             rs = prep3.executeQuery();
             while (rs.next()) {
-                String dish_name = rs.getString("dish_name");
+                String dish_name = rs.getString("DishName");
                 jComboBox4.addItem(dish_name);
                 jComboBox5.addItem(dish_name);
             }
@@ -89,10 +89,19 @@ public class CreateFoodPackage extends javax.swing.JPanel {
             rs = prep1.executeQuery();
             Caterer caterer;
             while (rs.next()) {
-                caterer = new Caterer(rs.getString("CatererID"), rs.getString("Caterer_Name"), rs.getString("Package_Name"), rs.getString("Price"));
-                catererList.add(caterer);
+                caterer = new Caterer(
+                rs.getString("CatererId"),
+                rs.getString("CatererName"),
+                rs.getString("PackageName"),
+                rs.getString("Price")
+            );
+            catererList.add(caterer);
+            
+             for (Caterer c : catererList) {
+                   System.out.println(c);
+              }
             }
-
+         
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -105,12 +114,11 @@ public class CreateFoodPackage extends javax.swing.JPanel {
         ArrayList<Caterer> list = catererList();
 
         Object[] row = new Object[4];
+       
         for (Caterer c : list) {
             row[0] = c;
-//            row[1]= list.get(i).getCaterer_Name();
             row[1] = c.getPackage_name();
             row[2] = c.getPrice();
-//            row[3] = c.getPrice();
             model.addRow(row);
         }
     }
@@ -450,7 +458,7 @@ public class CreateFoodPackage extends javax.swing.JPanel {
 
         add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
-
+// menu creation
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (jPackageName.getText().isBlank() || jPrice.getText().isBlank()) {
@@ -486,6 +494,7 @@ public class CreateFoodPackage extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //View 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = jTable1.getSelectedRow();
