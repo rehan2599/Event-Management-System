@@ -299,7 +299,7 @@ public class LoginPage extends javax.swing.JFrame {
                         pch.setVisible(true);
                         this.setVisible(false);
                         break;
-                    case "Catessrer Admin":
+                    case "Caterer Admin":
                         CatererHomePage2 c = new CatererHomePage2(Fname, role);
                         c.setVisible(true);
                         this.setVisible(false);
